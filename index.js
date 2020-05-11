@@ -30,16 +30,25 @@ button2.type = "button";
 button2.appendChild(text2);
 form.appendChild(button2);
 
+const reset = () => {
+	input.value = null;
+}
+
 //on button click//
 button1.addEventListener("click", () => {
     boxes = input.value;
     for (let i = 0; i < boxes; i++ ) {
         const box = document.createElement('div');
-        //let img = document.createElement('img')
         box.id = "box";
         box.className = "box"
+        let img = document.createElement('img');
+        img.src = "https://source.unsplash.com/random/500x500//?bunny";
+        img.setAttribute ("height", "100vw / 3.5");
+        img.setAttribute ("width", "100vw / 3.5");
+        box.appendChild(img);
         wrapper.appendChild(box);
         wrapper.prepend(box);
+        reset();
     }
   })
 

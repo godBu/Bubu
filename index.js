@@ -14,40 +14,47 @@ input.type = "text";
 input.id = "input";
 form.appendChild(input);
 
+//creating image input//
+let imgInput = document.createElement('input');
+imgInput.type = "text";
+imgInput.id = "imageInput";
+form.appendChild(imgInput);
+
 //creating choose button//
 let button1 = document.createElement('button');
 let text1 = document.createTextNode('Choose');
-button1.id = "choose";
 button1.type = "button"
+button1.id = "choose";
 button1.appendChild(text1);
 form.appendChild(button1);
 
 //creating clear button//
 let button2 = document.createElement('button');
 let text2 = document.createTextNode('Clear');
-button2.id = "clear";
 button2.type = "button";
+button2.id = "clear";
 button2.appendChild(text2);
 form.appendChild(button2);
 
 const reset = () => {
-	input.value = null;
+    input.value = null;
+    imgInput.value = 'search image';
 }
+
+reset();
 
 //on button click//
 button1.addEventListener("click", () => {
-    boxes = input.value;
+    let boxes = input.value;
+    let images = imgInput.value;
     for (let i = 0; i < boxes; i++ ) {
-        const box = document.createElement('div');
-        box.id = "box";
-        box.className = "box"
+        let numberRandom = Math.floor((Math.random() * 100) + 1);
         let img = document.createElement('img');
-        img.src = "https://source.unsplash.com/random/500x500//?bunny";
+        img.src = `https://source.unsplash.com/random/500x500//?sig=${numberRandom}&${images}`
         img.setAttribute ("height", "100vw / 3.5");
         img.setAttribute ("width", "100vw / 3.5");
-        box.appendChild(img);
-        wrapper.appendChild(box);
-        wrapper.prepend(box);
+        img.className = 'box';
+        wrapper.appendChild(img);
         reset();
     }
   })
